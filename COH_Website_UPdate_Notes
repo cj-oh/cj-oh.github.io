@@ -1,0 +1,18 @@
+1.
+cd mywebsite/coh1211.github.io/
+
+2.
+jekyll serve (to check)
+
+3.
+jekyll build (to build)
+
+4.
+In index.html, 
+
+<link rel="stylesheet" type="text/css" href="/style.css" />
+to 
+<link rel="stylesheet" type="text/css" href="http://eecs.qmul.ac.uk/~coh/style.css" />
+
+5.
+rsync ssh -avz --partial /home/coh/mywebsite/coh1211.github.io/_site/  coh@frank.eecs.qmul.ac.uk:/homes/coh/public_html/

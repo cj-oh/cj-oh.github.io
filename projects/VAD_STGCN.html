@@ -1,0 +1,277 @@
+<!DOCTYPE html> 
+<html lang="en">
+<head>
+
+	<meta charset="UTF-8">
+	<title>SPATIO-TEMPORAL GRAPH-BASED SELF-LABELLING FOR VIDEO ANOMALY DETECTION</title>
+
+	<!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script> -->
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+  <script type="text/x-mathjax-config">
+        MathJax.Hub.Config({            
+            tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]}            
+        });
+    </script>
+  <script src='https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-MML-AM_CHTML' async></script>
+
+	<link rel="stylesheet" type="text/css" href="layout.css">
+
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<style>
+
+		h1 {
+			font-size: 200%;
+			text-align: center;
+      font-family:'Lato', Calibri, sans-serif
+		}
+
+		h2 {
+			font-size: 150%;
+			text-align: center;
+      font-family:'Lato', Calibri, sans-serif
+		}
+
+		h3 {
+			font-size: 100%;
+			text-align: center;
+      font-family:'Lato', Calibri, sans-serif
+		}
+
+		.center-justified {
+			text-align: justify;
+			margin: 0 auto;
+			width: 1000px;
+      font-family:'Lato', Calibri, sans-serif
+		}
+
+		.center {
+			text-align: center;
+		}
+
+	/* NAVIGATION */
+	nav {0
+		width: 100%;
+		margin: 0 auto;
+		background: #fff;
+	}
+
+	/* By Dominik Biedebach @domobch */
+	nav ul {
+		list-style: none;
+		text-align: center;
+	}
+	nav ul li {
+		display: inline-block;
+	}
+	nav ul li a {
+		display: block;
+		padding: 0px;
+		text-decoration: none;
+		color: #aaa;
+		font-weight: 800;
+		margin: 0 10px;
+	}
+	nav ul li a,
+	nav ul li a:after,
+	nav ul li a:before {
+		transition: all .5s;
+	}
+	nav ul li a:hover {
+		color: #555;
+	}
+
+	/* stroke */
+	nav.stroke ul li a,
+	nav.fill ul li a {
+		position: relative;
+	}
+	nav.stroke ul li a:after,
+	nav.fill ul li a:after {
+		position: absolute;
+		bottom: 0;
+		left: 0;
+		right: 0;
+		margin: auto;
+		width: 0%;
+		content: '.';
+		color: transparent;
+		background: #333;
+		height: 1px;
+	}
+	nav.stroke ul li a:hover:after {
+		width: 100%;
+	}
+
+    .data-table {
+        border-collapse: collapse;
+    }
+    .border-top {
+        border-top: 1px solid #000;
+    }
+    .border-bottom {
+        border-bottom: 1px solid #000;
+    }
+    .border-left {
+        border-left: 1px solid #000;
+    }
+    .border-right {
+        border-right: 1px solid #000;
+    }
+</style>
+
+<script async src='/cdn-cgi/bm/cv/669835187/api.js'></script></head>
+
+<body>
+	<div class="center-justified" style="width:1000px;"> 
+		<h1>SPATIO-TEMPORAL GRAPH-BASED SELF-LABELLING FOR <br> VIDEO ANOMALY DETECTION</h1>
+		<h2>Meng Xing<sup>1,3</sup>, Zhiyong Feng<sup>1</sup>, Yong Su<sup>2</sup>, Yiming Zhang<sup>1</sup>, Changjae Oh<sup>3</sup></h2>
+		<h3> Tianjin University, China<sup>1</sup> <br> Tianjin Normal University, China<sup>2</sup> <br> Centre for Intelligent Sensing, Queen Mary University of London, United Kingdom<sup>3</sup> </h3>
+	</div>
+	<div class="center-justified">
+		<p>
+				<b>ABSTRACT:</b> Video anomaly detection (VAD) aims to identify abnormal events in a video sequence.
+Existing methods achieve VAD by learning the decision boundary between the normal space and the abnormal space pre-defined for training. However, these methods do not consider the gap between the pre-defined abnormal space and the real one.
+In this paper, we propose a novel self-labelling-based learning and combine this scheme with spatio-temporal graph convolutional network (ST-GCN) for VAD.
+ST-GCN is utilized to model the interaction between events between inter-frame objects and is trained with the proposed learning scheme.
+Our learning scheme allows the model to detect not-normal events instead of abnormal events, which shows a better generalization ability on unseen abnormal events.
+We validate our method on three datasets, showing state-of-the-art frame-level AUC results on Avenue (92.5%), competitive 96.5% AUC on UCSD Ped2 and 76.8% AUC on ShanghaiTech.
+        </p>
+
+		<br>
+		<br>
+
+
+	<div style="text-align: center;">
+		<img width=1000 src="VAD_STGCN/images/pipeline.png">
+	</div>
+
+		<p>
+				Firstly, the Object selection and ST-Graph Construction modules transform the input video sequence into the ST-Graph with the objects as nodes by utilizing the object detector and optical-flow extractor.
+By assuming that abnormal events tend to have larger motions than normal ones, we generate pseudo-abnormal events utilizing frames with larger time intervals.
+It is worth noting, the pseudo-anomalies assumption can be expanded into a more flexible assumption toolbox to address different scenarios.
+Secondly, the ST-Graph is fed into the ST-GCN to learn the spatial interaction of intra-frame objects and the temporal correlation of inter-frame objects.
+Finally, we train our model based on a new self-labelling-based learning scheme, which learns the decision boundary between normal and not-normal events.
+		</p>
+
+<video width="1000" controls autoplay muted loop style="vertical-align: middle;"><source src="VAD_STGCN/video/supplementary materials.mp4" type="video/mp4" >Your browser does not support the video tag.
+</video>
+
+
+
+		<br>
+		<br>
+	<h2 class="Tracking results" style="text-align: left;">Results</h2>
+		<table align="center" style="border:0px;padding-left:0px">
+			<tr>
+				<td width="10%" style="border:0px;padding:0px" align="center">Detection Scenarios</td>
+				<td width="18%" style="border:0px;padding:0px" align="center">detection results</td>
+				<td width="18%" style="border:0px;padding:0px" align="center">detection results</td>
+				<td width="18%" style="border:0px;padding:0px" align="center">detection results</td>
+				<td width="18%" style="border:0px;padding:0px" align="center">detection results</td>
+			</tr>
+			<tr>
+				<td style="border:0px;padding:0px;vertical-align: middle;" align="center"><i>Avenue</i></td>
+				<td style="border:0px;padding:0px 0px 10px 0px;vertical-align: middle;" align="center">
+					<video width="200" controls autoplay muted loop style="vertical-align: middle;"><source src="VAD_STGCN/video/Avenue1.mp4" type="video/mp4" >Your browser does not support the video tag.
+					</video>
+				</td>
+
+				<td style="border:0px;padding:0px 0px 10px 0px;vertical-align: middle;" align="center">
+					<video width="200" controls autoplay muted loop style="vertical-align: middle;"><source src="VAD_STGCN/video/Avenue2.mp4" type="video/mp4" >Your browser does not support the video tag.
+					</video>
+				</td>
+				<td style="border:0px;padding:0px 0px 10px 0px;vertical-align: middle;" align="center">
+					<video width="200" controls autoplay muted loop style="vertical-align: middle;"><source src="VAD_STGCN/video/Avenue3.mp4" type="video/mp4" >Your browser does not support the video tag.
+					</video>
+				</td>
+				<td style="border:0px;padding:0px 0px 10px 0px;vertical-align: middle;" align="center">
+					<video width="200" controls autoplay muted loop style="vertical-align: middle;"><source src="VAD_STGCN/video/Avenue4.mp4" type="video/mp4" >Your browser does not support the video tag.
+					</video>
+				</td>
+
+			</tr>
+				<td style="border:0px;padding:0px;vertical-align: middle;" align="center"><i>ShanghaiTech</i></td>
+				<td style="border:0px;padding:0px 0px 10px 0px;vertical-align: middle;" align="center">
+					<video width="200" controls autoplay muted loop style="vertical-align: middle;"><source src="VAD_STGCN/video/shanghaitech1.mp4" type="video/mp4" >Your browser does not support the video tag.
+					</video>
+				</td>
+				<td style="border:0px;padding:0px 0px 10px 0px;vertical-align: middle;" align="center">
+					<video width="200" controls autoplay muted loop style="vertical-align: middle;"><source src="VAD_STGCN/video/shanghaitech2.mp4" type="video/mp4" >Your browser does not support the video tag.
+					</video>
+				</td>
+				<td style="border:0px;padding:0px 0px 10px 0px;vertical-align: middle;" align="center">
+					<video width="200" controls autoplay muted loop style="vertical-align: middle;"><source src="VAD_STGCN/video/shanghaitech3.mp4" type="video/mp4" >Your browser does not support the video tag.
+					</video>
+				</td>
+				<td style="border:0px;padding:0px 0px 10px 0px;vertical-align: middle;" align="center">
+					<video width="200" controls autoplay muted loop style="vertical-align: middle;"><source src="VAD_STGCN/video/shanghaitech4.mp4" type="video/mp4" >Your browser does not support the video tag.
+					</video>
+				</td>
+			</tr>
+
+
+			</tr>
+				<td style="border:0px;padding:0px;vertical-align: middle;" align="center"><i>ShanghaiTech</i></td>
+				<td style="border:0px;padding:0px 0px 10px 0px;vertical-align: middle;" align="center">
+					<video width="200" controls autoplay muted loop style="vertical-align: middle;"><source src="VAD_STGCN/video/shanghaitech5.mp4" type="video/mp4" >Your browser does not support the video tag.
+					</video>
+				</td>
+				<td style="border:0px;padding:0px 0px 10px 0px;vertical-align: middle;" align="center">
+					<video width="200" controls autoplay muted loop style="vertical-align: middle;"><source src="VAD_STGCN/video/shanghaitech6.mp4" type="video/mp4" >Your browser does not support the video tag.
+					</video>
+				</td>
+				<td style="border:0px;padding:0px 0px 10px 0px;vertical-align: middle;" align="center">
+					<video width="200" controls autoplay muted loop style="vertical-align: middle;"><source src="VAD_STGCN/video/shanghaitech7.mp4" type="video/mp4" >Your browser does not support the video tag.
+					</video>
+				</td>
+				<td style="border:0px;padding:0px 0px 10px 0px;vertical-align: middle;" align="center">
+					<video width="200" controls autoplay muted loop style="vertical-align: middle;"><source src="VAD_STGCN/video/shanghaitech8.mp4" type="video/mp4" >Your browser does not support the video tag.
+					</video>
+				</td>
+			</tr>
+
+
+
+
+<!--			</tr>-->
+<!--				<td style="border:0px;padding:0px;vertical-align: middle;" align="center"><i>camera</i></td>-->
+<!--				<td style="border:0px;padding:0px 0px 10px 0px;vertical-align: middle;" align="center">-->
+<!--					<video width="200" controls autoplay muted loop style="vertical-align: middle;"><source src="videos/camera/camera_canon_len_scene_1.mp4" type="video/mp4" >Your browser does not support the video tag.-->
+<!--					</video>-->
+<!--				</td>-->
+<!--				<td style="border:0px;padding:0px 0px 10px 0px;vertical-align: middle;" align="center">-->
+<!--					<video width="200" controls autoplay muted loop style="vertical-align: middle;"><source src="videos/camera/camera_canon_len_scene_1_cluster.mp4" type="video/mp4" >Your browser does not support the video tag.-->
+<!--					</video>-->
+<!--				</td>-->
+<!--				<td style="border:0px;padding:0px 0px 10px 0px;vertical-align: middle;" align="center">-->
+<!--					<video width="200" controls autoplay muted loop style="vertical-align: middle;"><source src="videos/camera/camera_canon_len_scene_4.mp4" type="video/mp4" >Your browser does not support the video tag.-->
+<!--					</video>-->
+<!--				</td>-->
+<!--				<td style="border:0px;padding:0px 0px 10px 0px;vertical-align: middle;" align="center">-->
+<!--					<video width="200" controls autoplay muted loop style="vertical-align: middle;"><source src="videos/camera/camera_canon_len_scene_4_cluster.mp4" type="video/mp4" >Your browser does not support the video tag.-->
+<!--					</video>-->
+<!--				</td>-->
+<!--			</tr>-->
+
+			</tr>
+		</table>
+		<br>
+		<br>
+<!--		<iframe width="560" height="315" src="https://www.youtube.com/embed/J1j0ApREFn8" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>-->
+
+		
+
+
+
+	<h2 style="text-align: left;">Contacts</h2>
+	<p>
+		If you have any further enquiries, question, or comments, please contact 
+		<a href="mailto:xingmeng@tju.edu.cn"><u>xingmeng@tju.edu.cn</u></a>.
+	</p>
+
+		</div>
+	<br>
+	<br>
+<script type="text/javascript">(function(){window['__CF$cv$params']={r:'6de861896b0275cb',m:'ppqRX6tRQH4fUS12qEp4ASn7HTYLZcxczg_G238ujv8-1645031338-0-ASgYPROdw9+o4jFoUNr8Id49tDTtlx5gflbKrAkhfXy2ENQyKulR5gLqJ0Bkdz59YBZm/firsQF0/kj1XO5yyxa5ap7YlCONhhMEOMs9TeGlQzoXAMk4nHBNsniUUaUcRTdaSZhpPQGOa6qn4k9yqil4uoTx4WWfMhmspNBlh1UhCVyy0G3RKeZWSAkf/VI9eQ==',s:[0x1f8bab9e4e,0x98dc696c79],}})();</script></body> 
+</html>
